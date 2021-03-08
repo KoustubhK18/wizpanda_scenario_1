@@ -1,1 +1,56 @@
-<p>signup works!</p>
+<div class="container">
+    <div class="form" [formGroup]="myForm">
+        <div class="form-group">
+            <label for="student-name">Name</label>
+            <input type="text" id="student-name" class="form-control" formControlName="name">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="form-error">
+                <div *ngIf="name.errors.required">
+                    *Name is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="student-email">Email</label>
+            <input type="email" id="student-email" class="form-control" formControlName="email">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="form-error">
+                <div *ngIf="email.errors.required">
+                    *Email is required.
+                </div>
+                <div *ngIf="email.errors.email">
+                    *Enter Valid Email (ex. johndoe@gmail.com)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="student-password">Password</label>
+            <input type="password" id="student-password" class="form-control" formControlName="password">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                <div *ngIf="password.errors.required" class="form-error">
+                    *password is required.
+                </div>
+                <div *ngIf="password.errors.minlength" class="form-error">
+                    *password must contain atleast 8 characters.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="student-mobile">Phone No</label>
+            <input type="tel" id="student-mobile" class="form-control" formControlName="mobileNo">
+            <div *ngIf="mobileNo.invalid && (mobileNo.dirty || mobileNo.touched)">
+                <div *ngIf="mobileNo.errors.required" class="form-error">
+                    *Phone number is required.
+                </div>
+                <div *ngIf="mobileNo.errors.minlength || mobileNo.errors.maxlength" class="form-error">
+                    *Phone number must have 10 digits.
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <button [disabled]="email.errors || password.errors || mobileNo.errors" (click)="submitForm()" class="btn btn-lg btn-success">Submit</button>
+            <button (click)="resetForm()" class="btn btn-lg btn-warning" style="margin-left: 10px;">Clear</button>
+        </div>
+    </div>
+</div>

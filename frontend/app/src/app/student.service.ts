@@ -16,4 +16,12 @@ export class StudentService {
     return this.httpClient.post("http://localhost:5000/student/auth",body);
   }
 
+  signup(body){
+    return this.httpClient.post("http://localhost:5000/student/add",body);
+  }
+
+  getAllStudents(){
+    return this.httpClient.get("http://localhost:5000/student/getAll");
+  }
+
 }
